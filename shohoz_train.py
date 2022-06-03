@@ -146,7 +146,7 @@ for chooseSeatTitle in chooseSeat:
     print(chooseSeatTitle.get_attribute("title"))
 
 chooseSeatCMD = input("Please choose your seat from above list")
-chooseSeatPath = browser.find_element_by_xpath("//div[@class='seat_layout clearfix ']//ul//li//a[@onclick='chooseSeat(this)'][@title='"+chooseSeatCMD+"']")
+chooseSeatPath = browser.find_element_by_xpath("//div[@class='col-md-6 seat_layout clearfix']//ul//li//a[@class='seat seat-available'][@title='"+chooseSeatCMD+"']")
 chooseSeatPath.click()
 
 browser.implicitly_wait(30)
@@ -190,19 +190,18 @@ browser.implicitly_wait(30)
 bKash = browser.find_element_by_xpath("//div[@id='bKash']//div[@id='bkash_payment']")
 bKash.click()
 
-# browser.implicitly_wait(30)
-# # Confirm Reservation
-# confirmReservationBtn = browser.find_element_by_xpath("//div[@class='mid_cont_btn']//button[@id='confirm_button']")
-# confirmReservationBtn.click()
-# print("Please Pay The Amount Within 30 min")
-#
-# finalConfirmation = input("Please type Done after Payment")
-# time.sleep(60)
-# if finalConfirmation == "Done":
-#     print("Please Check you Email for Ticket")
-#     time.sleep(1000)
-#     browser.quit()
+browser.implicitly_wait(30)
+# Confirm Reservation
+confirmReservationBtn = browser.find_element_by_xpath("//div[@class='mid_cont_btn']//button[@id='confirm_button']")
+confirmReservationBtn.click()
+print("Please Pay The Amount Within 30 min")
 
+finalConfirmation = input("Please type Done after Payment")
+time.sleep(60)
+if finalConfirmation == "Done":
+    print("Please Check you Email for Ticket")
+    time.sleep(1000)
+    browser.quit()
 
 
 

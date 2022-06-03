@@ -7,6 +7,7 @@ from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from datetime import datetime
 
 browser = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
 
@@ -19,6 +20,17 @@ browser.get(url)
 
 browser.implicitly_wait(30)
 time.sleep(10)
+
+# Current Time
+now = datetime.now()
+current_time = now.strftime("%H:%M:%S")
+timeOff1 = now.strftime("23:45:00")
+timeOff2 = now.strftime("7:55:00")
+print("Current Time =", current_time)
+print("Please try to login 8 AM to 11 PM")
+if current_time < timeOff1 and current_time > timeOff2:
+    print("Please Try to login After 8 AM")
+    time.sleep(5)
 
 # From Station
 fromStation = browser.find_element_by_xpath("//div[@class='form-group']//input [@id='dest_from']")
@@ -312,3 +324,4 @@ if finalConfirmation == "Done":
     browser.quit()
 
 
+time.sleep(100000)
